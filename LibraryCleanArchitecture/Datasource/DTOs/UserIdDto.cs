@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace DomainClean.Datasource.DTOs
 {
-    public class UserIdDto
+    public record UserIdDto
     {
-        public readonly Guid id;
+        public Guid Id;
 
         public UserIdDto()
         {
-            id = Guid.NewGuid();
+            Id = Guid.NewGuid();
         }
 
         public UserIdDto(string id)
@@ -27,9 +27,12 @@ namespace DomainClean.Datasource.DTOs
                 throw new ArgumentException("Unable to parse id as Guid.", nameof(id));
             }
 
-            this.id = parsedId;
+            this.Id = parsedId;
         }
 
-        public override string ToString() => id.ToString();
+        public override string ToString()
+        {
+            return Id.ToString();
+        }
     }
 }
