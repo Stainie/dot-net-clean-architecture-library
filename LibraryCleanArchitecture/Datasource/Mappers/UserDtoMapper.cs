@@ -12,7 +12,7 @@ namespace DomainClean.Datasource.Mappers
     {
         public static UserDto MapToDto(this User user)
         {
-            return new UserDto(new UserIdDto(user.Id.ToString()), user.Password, user.EmailAddress, user.VerifiedAt, user.CreatedAt);
+            return new UserDto() { Id = user.Id.MapToDto(), Password = user.Password, EmailAddress = user.EmailAddress, VerifiedAt = user.VerifiedAt, CreatedAt = user.CreatedAt };
         }
 
         public static UserIdDto MapToDto(this UserId userId)

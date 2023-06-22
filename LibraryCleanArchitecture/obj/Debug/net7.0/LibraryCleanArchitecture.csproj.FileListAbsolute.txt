@@ -1,0 +1,5 @@
+C:\Users\Stanko\source\repos\LibraryCleanArchitecture\LibraryCleanArchitecture\obj\Debug\net7.0\LibraryCleanArchitecture.csproj.AssemblyReference.cache
+C:\Users\Stanko\source\repos\LibraryCleanArchitecture\LibraryCleanArchitecture\obj\Debug\net7.0\LibraryCleanArchitecture.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Stanko\source\repos\LibraryCleanArchitecture\LibraryCleanArchitecture\obj\Debug\net7.0\LibraryCleanArchitecture.AssemblyInfoInputs.cache
+C:\Users\Stanko\source\repos\LibraryCleanArchitecture\LibraryCleanArchitecture\obj\Debug\net7.0\LibraryCleanArchitecture.AssemblyInfo.cs
+C:\Users\Stanko\source\repos\LibraryCleanArchitecture\LibraryCleanArchitecture\obj\Debug\net7.0\LibraryCleanArchitecture.csproj.CoreCompileInputs.cache

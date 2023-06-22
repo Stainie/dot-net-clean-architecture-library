@@ -25,12 +25,12 @@ namespace DomainClean.Datasource.Services
             try
             {
                 var userId = new UserIdDto();
-                var userDto = new UserDto(userId, password, email, null, new DateTime());
+                var userDto = new UserDto() { Id = userId, Password = password, EmailAddress = email, VerifiedAt = null, CreatedAt = new DateTime() };
 
                 await userSqlContext.AddDomainAsync(userDto);
 
                 var userCreatedEvent = new UserCreatedEvent(userId, email);
-                await eventStore.AppentEventAsync(userId.id, userCreatedEvent);
+                await eventStore.AppentEventAsync(userId.Id, userCreatedEvent);
 
                 return new Ok<UnableToRegisterUser, User>(userDto.MapToEntity());
 
@@ -68,7 +68,7 @@ namespace DomainClean.Datasource.Services
                 var userDto = await userSqlContext.GetDomainByEmailAddressAsync(emailAddress);
 
                 var userFoundByEmailEvent = new UserFoundByEmailEvent(userDto.Id, userDto.EmailAddress);
-                await eventStore.AppentEventAsync(userDto.Id.id, userFoundByEmailEvent);
+                await eventStore.AppentEventAsync(userDto.Id.Id, userFoundByEmailEvent);
 
                 return new Ok<UnableToFindUserEmail, User>(userDto.MapToEntity());
             }
@@ -85,7 +85,7 @@ namespace DomainClean.Datasource.Services
                 var userDto = await userSqlContext.GetDomainByIdAsync(id.MapToDto());
 
                 var userFoundByIdEvent = new UserFoundByIdEvent(userDto.Id);
-                await eventStore.AppentEventAsync(userDto.Id.id, userFoundByIdEvent);
+                await eventStore.AppentEventAsync(userDto.Id.Id, userFoundByIdEvent);
 
                 return new Ok<UnableToFindUserId, User>(userDto.MapToEntity());
             }
@@ -101,8 +101,7 @@ namespace DomainClean.Datasource.Services
             {
                 var userDto = await userSqlContext.GetDomainByIdAsync(userId.MapToDto());
 
-                userDto.EmailAddress = email;
-                userDto.VerifiedAt = DateTime.UtcNow;
+                UserDto newUserDto = userDto with { EmailAddress = email, VerifiedAt = DateTime.UtcNow };
 
                 await userSqlContext.UpdateDomainAsync(userDto);
 
